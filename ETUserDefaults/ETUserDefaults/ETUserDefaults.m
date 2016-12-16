@@ -74,6 +74,7 @@ NSString * const AES256Key = @"xco23498zflkjglasf09vlaa0jl20kcx";
         NSData *data = [NSKeyedArchiver archivedDataWithRootObject:[self.class _defaults]];
         NSData *enData = [data AES256EncryptWithKey:AES256Key];
         [enData writeToURL:[self.class _userDefaultsPath] atomically:YES];
+        [[NSFileManager defaultManager] setAttributes:@{NSFileProtectionKey: NSFileProtectionComplete} ofItemAtPath:[self.class _userDefaultsPath].relativePath error:nil];
     });
 }
 

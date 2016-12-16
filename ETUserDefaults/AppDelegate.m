@@ -19,6 +19,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [[ETUserDefaults standardUserDefaults] setObject:@"Ethan Cheung" forKey:@"username"];
+    [[ETUserDefaults standardUserDefaults] setObject:@"Ethan Cheung" forKey:@"username1"];
+    [[ETUserDefaults standardUserDefaults] setObject:@"Ethan Cheung" forKey:@"username2"];
     NSLog(@"%@", [[ETUserDefaults standardUserDefaults] objectForKey:@"username"]);
     return YES;
 }
