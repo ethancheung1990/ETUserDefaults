@@ -73,10 +73,13 @@ NSString * const AES256Key = @"xco23498zflkjglasf09vlaa0jl20kcx";
     dispatch_async([self.class _userDefaultsQueue], ^{
         NSData *data = [NSKeyedArchiver archivedDataWithRootObject:[self.class _defaults]];
         NSData *enData = [data AES256EncryptWithKey:AES256Key];
-        [enData writeToURL:[self.class _userDefaultsPath] atomically:YES];
+        NSURL *dataURL = [self.class _userDefaultsPath];
+        [enData writeToURL:dataURL atomically:YES];
         [[NSFileManager defaultManager] setAttributes:@{NSFileProtectionKey: NSFileProtectionComplete} ofItemAtPath:[self.class _userDefaultsPath].relativePath error:nil];
+        [dataURL setResourceValue:[NSNumber numberWithBool:YES] forKey:NSURLIsExcludedFromBackupKey error:nil];
     });
 }
+
 
 #pragma mark - private
 
